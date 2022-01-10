@@ -1,0 +1,35 @@
+{
+  "name": "nsp-team/common-tools",
+  "description": "Common tool library components",
+  "type": "library",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "maoxingpei",
+      "email": "maoxingpei8686@163.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "keywords": [
+    "psr",
+    "tools"
+  ],
+  "require": {
+    "php": ">=7.3.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "ext-mbstring": "*",
+    "ext-simplexml": "*",
+    "opis/closure": "=3.6.2",
+    "ext-gd": "*",
+    "ext-ctype": "*",
+    "ext-bcmath": "*",
+    "ext-dom": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "NspTeam\\Component\\Tools\\": "./src"
+    }
+  }
+}
