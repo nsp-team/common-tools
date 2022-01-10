@@ -354,4 +354,35 @@ class StrUtil
     {
         return count(preg_split('/\s+/u', $string, 0, PREG_SPLIT_NO_EMPTY));
     }
+
+    /**
+     * 转换一个String字符串为byte数组
+     *
+     * @param string $string
+     * @return array
+     */
+    public static function getBytes(string $string): array
+    {
+        $bytes = array();
+        for ($i = 0, $iMax = strlen($string); $i < $iMax; $i++) {
+            $bytes[] = ord($string[$i]);
+        }
+        return $bytes;
+    }
+
+    /**
+     * 将字节数组转化为String类型的数据
+     *
+     * @param array $bytes
+     * @return string
+     */
+    public static function byteToStr(array $bytes): string
+    {
+        $str = '';
+        foreach ($bytes as $ch) {
+            $str .= chr($ch);
+        }
+
+        return $str;
+    }
 }

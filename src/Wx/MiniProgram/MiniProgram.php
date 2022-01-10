@@ -112,7 +112,7 @@ class MiniProgram
         }
 
         // 算法为 AES-128-CBC，数据采用PKCS#7填充
-        $result = openssl_decrypt($aesCipher, "AES-128-CBC", $aesKey, 1, $aesIV);
+        $result = openssl_decrypt($aesCipher, "AES-128-CBC", $aesKey, OPENSSL_RAW_DATA, $aesIV);
         $data = json_decode($result, true, 512, JSON_THROW_ON_ERROR);
         if ($data === NULL) {
             throw new \RuntimeException('aes 解密失败');
