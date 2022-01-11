@@ -11,27 +11,20 @@ class CryptoUtil
      * @param string $input
      * @param string $key 密钥
      * @param string $cipher
+     * @param int $option
      * @param string|null $iv 偏移量, ecb模式不用填写
      * @return array
      */
-    public static function desEncrypt(string $input, string $key, string $cipher = 'DES-ECB', ?string $iv = null): array
+    public static function desEncrypt(string $input, string $key, string $cipher = 'DES-ECB', int $option = OPENSSL_RAW_DATA, ?string $iv = null): array
     {
-        if ($cipher === 'DES-ECB') {
-            $iv = '';
-        } else {
-            $ivLength = openssl_cipher_iv_length($cipher);
-            $iv = str_repeat('0', $ivLength);
-            // 与cipher预期字节长度不匹配
-            if ($ivLength !== strlen($iv)) {
-                throw new \InvalidArgumentException('IV passed is ' . strlen($iv) . ' bytes long which is longer than the ' . $ivLength . ' expected by selected cipher');
-            }
-        }
+        $iv = self::getIv($cipher, $iv);
 
         return [
             'cipher' => $cipher,
             'iv' => $iv,
+            'key' => $key,
             // 数据采用PKCS#7填充
-            'data' => base64_encode(openssl_encrypt($input, $cipher, $key, OPENSSL_RAW_DATA, $iv))
+            'data' => base64_encode(openssl_encrypt($input, $cipher, $key, $option, $iv))
         ];
     }
 
@@ -41,38 +34,31 @@ class CryptoUtil
      * @param string $input
      * @param string $key
      * @param string $cipher
+     * @param int $option
      * @param string|null $iv
      * @return string
      */
-    public static function desDecrypt(string $input, string $key, string $cipher = 'DES-ECB', ?string $iv = null): string
+    public static function desDecrypt(string $input, string $key, string $cipher = 'DES-ECB', int $option = OPENSSL_RAW_DATA, ?string $iv = null): string
     {
-        if ($cipher === 'DES-ECB') {
-            $iv = '';
-        } else {
-            if (empty($iv)) {
-                throw new \InvalidArgumentException('iv params is err');
-            }
-            $length = openssl_cipher_iv_length($cipher);
-            // 与cipher预期字节长度不匹配
-            if ($length !== strlen($iv)) {
-                throw new \InvalidArgumentException('IV passed is ' . strlen($iv) . ' bytes long which is longer than the ' . $length . ' expected by selected cipher');
-            }
-        }
+        $iv = self::getIv($cipher, $iv);
 
         // 数据采用PKCS#7填充
-        return openssl_decrypt(base64_decode($input), $cipher, $key, OPENSSL_RAW_DATA, $iv);
+        return openssl_decrypt(base64_decode($input), $cipher, $key, $option, $iv);
     }
 
     /**
-     * [encrypt aes加密]
+     * aes加密
+     * OPENSSL_RAW_DATA 等同于JAVA中填充方式为：Pkcs7-Pkcs5Padding模式填充数据补位
+     * OPENSSL_NO_PADDING 等同于 no Padding填充模式
      *
      * @param string $input
      * @param string $key
      * @param string $cipher
+     * @param int $option
      * @param string|null $iv
      * @return array
      */
-    public static function aesEncrypt(string $input, string $key, string $cipher = 'AES-128-CBC', ?string $iv = null): array
+    public static function aesEncrypt(string $input, string $key, string $cipher = 'AES-128-CBC', int $option = OPENSSL_RAW_DATA, ?string $iv = null): array
     {
         $ivLength = openssl_cipher_iv_length($cipher);
         if (is_null($iv)) {
@@ -81,25 +67,52 @@ class CryptoUtil
             throw new \InvalidArgumentException('IV passed is ' . strlen($iv) . ' bytes long which is longer than the ' . $ivLength . ' expected by selected cipher');
         }
 
+        $encrypt = openssl_encrypt($input, $cipher, $key, $option, $iv);
+
         return [
             'cipher' => $cipher,
+            'key' => $key,
             'iv' => $iv,
-            'data' => base64_encode(openssl_encrypt($input, $cipher, $key, OPENSSL_RAW_DATA, $iv))
+            'encrypt' => $encrypt,
+            'data' => base64_encode($encrypt)
         ];
     }
 
     /**
-     * [decrypt aes解密]
+     * aes解密
      *
      * @param string $input
      * @param string $key
      * @param string $cipher
+     * @param int $option OPENSSL_RAW_DATA = Pkcs7-Pkcs5
      * @param string|null $iv
      * @return false|string
      */
-    public static function aesDecrypt(string $input, string $key, string $cipher, ?string $iv = null)
+    public static function aesDecrypt(string $input, string $key, string $cipher, int $option = OPENSSL_RAW_DATA, ?string $iv = null)
     {
-        $decrypted = openssl_decrypt(base64_decode($input), $cipher, $key, OPENSSL_RAW_DATA, $iv);
+        $decrypted = openssl_decrypt(base64_decode($input), $cipher, $key, $option, $iv);
         return $decrypted;
+    }
+
+    /**
+     * @param string $cipher
+     * @param string $iv
+     * @return string
+     */
+    protected static function getIv(string $cipher, string $iv): string
+    {
+        if ($cipher === 'DES-ECB') {
+            $iv = '';
+        } else {
+            $ivLength = openssl_cipher_iv_length($cipher);
+            if ($ivLength !== 0) {
+                $iv = $iv ?? str_repeat('0', $ivLength);
+            }
+            // 与cipher预期字节长度不匹配
+            if ($ivLength !== strlen($iv)) {
+                throw new \InvalidArgumentException('IV passed is ' . strlen($iv) . ' bytes long which is longer than the ' . $ivLength . ' expected by selected cipher');
+            }
+        }
+        return $iv;
     }
 }
