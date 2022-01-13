@@ -21,7 +21,6 @@
     "ext-openssl": "*",
     "ext-mbstring": "*",
     "ext-simplexml": "*",
-    "opis/closure": "=3.6.2",
     "ext-gd": "*",
     "ext-ctype": "*",
     "ext-bcmath": "*",
