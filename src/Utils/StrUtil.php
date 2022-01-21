@@ -264,25 +264,57 @@ class StrUtil
     /**
      * 下划线转驼峰(首字母小写)
      *
-     * @param string $value
+     * @param string $underLineWord
      * @return string
      */
-    public static function camel(string $value): string
+    public static function camel(string $underLineWord): string
     {
-        return lcfirst(static::studly($value));
+        return lcfirst(static::bigCamel($underLineWord));
     }
 
     /**
      * 下划线转驼峰(首字母大写)
      *
-     * @param string $value
+     * @param string $underLineWord
      * @return string
      */
-    public static function studly(string $value): string
+    public static function bigCamel(string $underLineWord): string
     {
-        $value = ucwords(str_replace(['-', '_'], ' ', $value));
-
+        $value = ucwords(str_replace(['-', '_'], ' ', $underLineWord));
         return str_replace(' ', '', $value);
+    }
+
+    /**
+     *  Converts 'table_name' to 'TableName'.
+     * 下划线转大驼峰
+     *
+     * @param string $word
+     * @return string
+     */
+    public static function underlineToClassify(string $word): string
+    {
+        return str_replace([' ', '_', '-'], '', ucwords($word, ' _-'));
+    }
+
+    /**
+     * Converts 'ModelName' to 'model_name'. it same as Doctrine of `tableize` method
+     * 驼峰转下划线
+     *
+     * @param string $word
+     * @return string
+     */
+    public static function classifyToUnderline(string $word): string
+    {
+        $tabled = preg_replace('~(?<=\\w)([A-Z])~u', '_$1', $word);
+
+        if ($tabled === null) {
+            throw new \RuntimeException(sprintf(
+                'preg_replace returned null for value "%s"',
+                $word
+            ));
+        }
+
+        return mb_strtolower($tabled);
     }
 
     /**

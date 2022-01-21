@@ -82,14 +82,40 @@ class ArrayUtil
         }
 
         $tmp =[];
-        foreach ($map as $camelKey => $item) {
-            if (is_string($camelKey) && !is_numeric($camelKey)) {
-                $camelKey = StrUtil::camel($camelKey);
+        foreach ($map as $key => $item) {
+            if (is_string($key) && !is_numeric($key)) {
+                $key = StrUtil::camel($key);
             }
             if (is_array($item) ||is_object($item)) {
-                $tmp[$camelKey] = self::camel($item);
+                $tmp[$key] = self::camel($item);
             } else {
-                $tmp[$camelKey] = is_numeric($item)? (int)$item : $item;
+                $tmp[$key] = is_numeric($item)? (int)$item : $item;
+            }
+        }
+        return  $tmp;
+    }
+
+    /**
+     * 驼峰转下划线
+     *
+     * @param array|object|mixed $arr
+     * @return array|null
+     */
+    public static function classifyToUnderline($arr, $bigOrSmall=false): ?array
+    {
+        if (empty($arr)) {
+            return null;
+        }
+
+        $tmp =[];
+        foreach ($arr as $key => $item) {
+            if (is_string($key) && !is_numeric($key)) {
+                $key = StrUtil::classifyToUnderline($key);
+            }
+            if (is_array($item) ||is_object($item)) {
+                $tmp[$key] = self::classifyToUnderline($item);
+            } else {
+                $tmp[$key] = is_numeric($item)? (int)$item : $item;
             }
         }
         return  $tmp;
