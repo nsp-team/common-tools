@@ -8,6 +8,7 @@ use DOMException;
 
 /**
  * XmlUtil
+ *
  * @package NspTeam\Component\Tools\Utils
  */
 class XmlUtil
@@ -15,7 +16,7 @@ class XmlUtil
     /**
      * XML转数组
      *
-     * @param string $xml xml
+     * @param  string $xml xml
      * @return array
      */
     public static function toArray(string $xml)
@@ -28,7 +29,8 @@ class XmlUtil
 
     /**
      * 数组or对象转xml
-     * @param array|object $data
+     *
+     * @param  array|object $data
      * @return string
      */
     public static function toXml($data): string

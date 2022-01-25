@@ -22,7 +22,7 @@ class Ocr
     protected const IDCARD= self::DOMAIN.'/cv/ocr/idcard?type=MODE&img_url=ENCODE_URL&access_token=ACCESS_TOKEN';
 
     /**
-     * @param string $accessToken
+     * @param string     $accessToken
      * @param mixed|null $params
      */
     public function __construct(string $accessToken, $params=null)
@@ -32,7 +32,7 @@ class Ocr
     }
 
     /**
-     * @param string $imgUrl
+     * @param  string $imgUrl
      * @return bool|string
      * @throws \JsonException
      */
@@ -44,7 +44,7 @@ class Ocr
 
     /**
      *
-     * @param string $imgUrl
+     * @param  string $imgUrl
      * @return string
      * @throws \JsonException
      */

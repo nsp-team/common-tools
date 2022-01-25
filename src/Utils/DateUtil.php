@@ -5,6 +5,7 @@ namespace NspTeam\Component\Tools\Utils;
 
 /**
  * DateUtil
+ *
  * @package NspTeam\Component\Tools\Utils
  */
 class DateUtil
@@ -22,8 +23,8 @@ class DateUtil
     /**
      * 按月份偏移
      *
-     * @param int $num 月份
-     * @param int|null $timestamp 时间戳
+     * @param  int      $num       月份
+     * @param  int|null $timestamp 时间戳
      * @return false|int
      */
     public static function offsetMonth(int $num, ?int $timestamp = null)
@@ -35,8 +36,8 @@ class DateUtil
     /**
      * 按小时偏移
      *
-     * @param int $num
-     * @param int|null $timestamp
+     * @param  int      $num
+     * @param  int|null $timestamp
      * @return false|int
      */
     public static function offsetHour(int $num, ?int $timestamp = null)

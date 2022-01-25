@@ -5,6 +5,7 @@ namespace NspTeam\Component\Tools\Utils;
 
 /**
  * Captcha
+ *
  * @package NspTeam\Component\Tools\Utils
  */
 class Captcha
@@ -12,7 +13,7 @@ class Captcha
     /**
      * 获取自定义验证码图片
      *
-     * @param string $string 需要显示的字符串
+     * @param  string $string 需要显示的字符串
      * @return false|string
      * @throws \Exception
      */

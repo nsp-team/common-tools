@@ -11,7 +11,7 @@ class ArrayUtil
     /**
      * Determine whether the given value is array accessible.
      *
-     * @param mixed $value
+     * @param  mixed $value
      * @return bool
      */
     public static function accessible($value): bool
@@ -23,7 +23,7 @@ class ArrayUtil
     /**
      * 多维数组合并成单个数组
      *
-     * @param array $array
+     * @param  array $array
      * @return array
      */
     public static function collapse(array $array): array
@@ -45,8 +45,8 @@ class ArrayUtil
     /**
      * 确定提供的数组中是否存在给定的key
      *
-     * @param \ArrayAccess|array $array
-     * @param string|int $key
+     * @param  \ArrayAccess|array $array
+     * @param  string|int         $key
      * @return bool
      */
     public static function exists($array, $key): bool
@@ -61,7 +61,7 @@ class ArrayUtil
     /**
      * 将数组转换为URL-encode 之后的请求字符串
      *
-     * @param array $array
+     * @param  array $array
      * @return string
      */
     public static function query(array $array): string
@@ -72,7 +72,7 @@ class ArrayUtil
     /**
      * 蛇形法下划线转驼峰(首字母小写)
      *
-     * @param array|object|mixed $map
+     * @param  array|object|mixed $map
      * @return array|null
      */
     public static function camel($map): ?array
@@ -98,7 +98,7 @@ class ArrayUtil
     /**
      * 驼峰转下划线
      *
-     * @param array|object|mixed $arr
+     * @param  array|object|mixed $arr
      * @return array|null
      */
     public static function classifyToUnderline($arr, $bigOrSmall=false): ?array

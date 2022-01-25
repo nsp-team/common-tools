@@ -12,6 +12,7 @@ use Traversable;
 
 /**
  * Collection
+ *
  * @package NspTeam\Component\Tools
  */
 class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonSerializable, Arrayable, Jsonable
@@ -33,6 +34,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
 
     /**
      * 是否为空
+     *
      * @access public
      * @return bool
      */
@@ -49,7 +51,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
     /**
      * 合并数组
      *
-     * @param mixed $items 数据
+     * @param  mixed $items 数据
      * @return static
      */
     public function merge($items): self
@@ -140,7 +142,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
      * 对数组排序
      *
      * @access public
-     * @param callable|null $callback 回调
+     * @param  callable|null $callback 回调
      * @return static
      */
     public function sort(callable $callback = null): self
@@ -161,27 +163,30 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
 
     /**
      * 指定字段排序
+     *
      * @access public
-     * @param string $field 排序字段
-     * @param string $order 排序
+     * @param  string $field 排序字段
+     * @param  string $order 排序
      * @return static
      */
     public function order(string $field, string $order = 'asc'): self
     {
-        return $this->sort(function ($a, $b) use ($field, $order) {
-            $fieldA = $a[$field] ?? null;
-            $fieldB = $b[$field] ?? null;
+        return $this->sort(
+            function ($a, $b) use ($field, $order) {
+                $fieldA = $a[$field] ?? null;
+                $fieldB = $b[$field] ?? null;
 
-            return 'desc' === strtolower($order) ? (int)($fieldB > $fieldA) : (int)($fieldA > $fieldB);
-        });
+                return 'desc' === strtolower($order) ? (int)($fieldB > $fieldA) : (int)($fieldA > $fieldB);
+            }
+        );
     }
 
     /**
      * 通过使用用户自定义函数，以字符串返回数组
      *
      * @access public
-     * @param callable $callback 调用方法
-     * @param mixed $initial
+     * @param  callable $callback 调用方法
+     * @param  mixed    $initial
      * @return mixed
      */
     public function reduce(callable $callback, $initial = null)
@@ -193,9 +198,9 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
      * 截取数组
      *
      * @access public
-     * @param int $offset 起始位置
-     * @param int|null $length 截取长度
-     * @param bool $preserveKeys preserveKeys
+     * @param  int      $offset       起始位置
+     * @param  int|null $length       截取长度
+     * @param  bool     $preserveKeys preserveKeys
      * @return static
      */
     public function slice(int $offset, int $length = null, bool $preserveKeys = false): self
@@ -205,9 +210,10 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
 
     /**
      * 返回数据中指定的一列
+     *
      * @access public
-     * @param string|null $columnKey 键名
-     * @param string|null $indexKey 作为索引值的列
+     * @param  string|null $columnKey 键名
+     * @param  string|null $indexKey  作为索引值的列
      * @return array
      */
     public function column(?string $columnKey, string $indexKey = null): array
@@ -225,8 +231,8 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
 
     /**
      * @inheritDoc
-     * @param mixed $offset
-     * @return mixed
+     * @param      mixed $offset
+     * @return     mixed
      */
     public function offsetGet($offset)
     {
@@ -235,8 +241,8 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
 
     /**
      * @inheritDoc
-     * @param mixed $offset
-     * @param mixed $value
+     * @param      mixed $offset
+     * @param      mixed $value
      */
     public function offsetSet($offset, $value)
     {
@@ -249,7 +255,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
 
     /**
      * @inheritDoc
-     * @param mixed $offset
+     * @param      mixed $offset
      */
     public function offsetUnset($offset)
     {
@@ -258,7 +264,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
 
     /**
      * @inheritDoc
-     * @return int
+     * @return     int
      */
     public function count(): int
     {
@@ -267,7 +273,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
 
     /**
      * @inheritDoc
-     * @return Traversable
+     * @return     Traversable
      */
     public function getIterator(): Traversable
     {
@@ -276,7 +282,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
 
     /**
      * @inheritDoc
-     * @return array
+     * @return     array
      */
     public function jsonSerialize(): array
     {
@@ -285,20 +291,22 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
 
     /**
      * @inheritDoc
-     * @return array
+     * @return     array
      */
     public function toArray(): array
     {
-        return array_map(static function ($value) {
-            return $value instanceof Arrayable ? $value->toArray() : $value;
-        }, $this->items);
+        return array_map(
+            static function ($value) {
+                return $value instanceof Arrayable ? $value->toArray() : $value;
+            }, $this->items
+        );
     }
 
     /**
      * @inheritDoc
-     * @param int $options
-     * @return string
-     * @throws \JsonException
+     * @param      int $options
+     * @return     string
+     * @throws     \JsonException
      */
     public function toJson(int $options = JSON_UNESCAPED_UNICODE): string
     {
@@ -316,7 +324,7 @@ class Collection implements \ArrayAccess, \Countable, \IteratorAggregate, \JsonS
     /**
      * 转换成数组
      *
-     * @param mixed $items 数据
+     * @param  mixed $items 数据
      * @return array
      */
     protected function convertToArray($items): array

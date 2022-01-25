@@ -31,5 +31,8 @@
     "psr-4": {
       "NspTeam\\Component\\Tools\\": "./src"
     }
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.6"
   }
 }

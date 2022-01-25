@@ -6,6 +6,7 @@ use Doctrine\Inflector\InflectorFactory;
 
 /**
  * doctrine/inflector
+ *
  * @package NspTeam\Component\Tools\Utils
  * InflectorUtil
  */

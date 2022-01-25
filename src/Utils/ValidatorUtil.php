@@ -5,15 +5,16 @@ namespace NspTeam\Component\Tools\Utils;
 
 /**
  * ValidatorUtil
+ *
  * @package NspTeam\Component\Tools\Utils
- * @since 0.0.1
+ * @since   0.0.1
  */
 class ValidatorUtil
 {
     /**
      * 验证手机号是否正确
      *
-     * @param string $value
+     * @param  string $value
      * @return bool
      */
     public static function isPhone(string $value): bool
@@ -24,7 +25,7 @@ class ValidatorUtil
     /**
      * 验证邮箱
      *
-     * @param string $email
+     * @param  string $email
      * @return bool
      */
     public static function isEmail(string $email): bool
@@ -34,7 +35,8 @@ class ValidatorUtil
 
     /**
      * 是否字母或数字
-     * @param string $str
+     *
+     * @param  string $str
      * @return bool
      */
     public static function isAlum(string $str): bool
@@ -55,7 +57,7 @@ class ValidatorUtil
     /**
      * 是否包含特殊字符
      *
-     * @param string $str
+     * @param  string $str
      * @return bool
      */
     public static function isSpecialCharacter(string $str): bool
@@ -67,7 +69,7 @@ class ValidatorUtil
     /**
      * 验证字符串是否全部是中文
      *
-     * @param string $str
+     * @param  string $str
      * @return bool true表示全部是中文，false表示部分是中文或没有中文
      */
     public static function isAllChinese(string $str): bool
@@ -78,9 +80,9 @@ class ValidatorUtil
     /**
      * 比较两个任意精度的数字是否相等
      *
-     * @param string $num1
-     * @param string $num2
-     * @param int|null $scale 允许误差的小数点个数
+     * @param  string   $num1
+     * @param  string   $num2
+     * @param  int|null $scale 允许误差的小数点个数
      * @return bool
      */
     public static function NumericEqual(string $num1, string $num2, ?int $scale = null): bool

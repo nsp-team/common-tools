@@ -7,12 +7,13 @@ class CryptoUtil
     /**
      * 加密, utf8编码，输出base64
      *
-     * @see http://tool.chacuo.net/cryptdes
-     * @param string $input
-     * @param string $key 密钥
-     * @param string $cipher
-     * @param int $option
-     * @param string|null $iv 偏移量, ecb模式不用填写
+     * @see    http://tool.chacuo.net/cryptdes
+     * @param  string      $input
+     * @param  string      $key    密钥
+     * @param  string      $cipher
+     * @param  int         $option
+     * @param  string|null $iv     偏移量,
+     *                             ecb模式不用填写
      * @return array
      */
     public static function desEncrypt(string $input, string $key, string $cipher = 'DES-ECB', int $option = OPENSSL_RAW_DATA, ?string $iv = null): array
@@ -31,11 +32,11 @@ class CryptoUtil
     /**
      * 解密
      *
-     * @param string $input
-     * @param string $key
-     * @param string $cipher
-     * @param int $option
-     * @param string|null $iv
+     * @param  string      $input
+     * @param  string      $key
+     * @param  string      $cipher
+     * @param  int         $option
+     * @param  string|null $iv
      * @return string
      */
     public static function desDecrypt(string $input, string $key, string $cipher = 'DES-ECB', int $option = OPENSSL_RAW_DATA, ?string $iv = null): string
@@ -51,11 +52,11 @@ class CryptoUtil
      * OPENSSL_RAW_DATA 等同于JAVA中填充方式为：Pkcs7-Pkcs5Padding模式填充数据补位
      * OPENSSL_NO_PADDING 等同于 no Padding填充模式
      *
-     * @param string $input
-     * @param string $key
-     * @param string $cipher
-     * @param int $option
-     * @param string|null $iv
+     * @param  string      $input
+     * @param  string      $key
+     * @param  string      $cipher
+     * @param  int         $option
+     * @param  string|null $iv
      * @return array
      */
     public static function aesEncrypt(string $input, string $key, string $cipher = 'AES-128-CBC', int $option = OPENSSL_RAW_DATA, ?string $iv = null): array
@@ -81,11 +82,11 @@ class CryptoUtil
     /**
      * aes解密
      *
-     * @param string $input
-     * @param string $key
-     * @param string $cipher
-     * @param int $option OPENSSL_RAW_DATA = Pkcs7-Pkcs5
-     * @param string|null $iv
+     * @param  string      $input
+     * @param  string      $key
+     * @param  string      $cipher
+     * @param  int         $option OPENSSL_RAW_DATA = Pkcs7-Pkcs5
+     * @param  string|null $iv
      * @return false|string
      */
     public static function aesDecrypt(string $input, string $key, string $cipher, int $option = OPENSSL_RAW_DATA, ?string $iv = null)
@@ -95,8 +96,8 @@ class CryptoUtil
     }
 
     /**
-     * @param string $cipher
-     * @param string $iv
+     * @param  string $cipher
+     * @param  string $iv
      * @return string
      */
     protected static function getIv(string $cipher, string $iv): string

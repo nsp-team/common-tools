@@ -6,8 +6,9 @@ namespace NspTeam\Component\Tools\Utils;
 
 /**
  * StringUtil
+ *
  * @package NspTeam\Component\Tools\Utils
- * @since 0.0.1
+ * @since   0.0.1
  */
 class StrUtil
 {
@@ -39,9 +40,9 @@ class StrUtil
     /**
      * 追加子字符串, 支持从front到end的截取子字符串
      *
-     * @param string $appendStr
-     * @param int|null $front
-     * @param int|null $end
+     * @param  string   $appendStr
+     * @param  int|null $front
+     * @param  int|null $end
      * @return $this
      */
     public function append(string $appendStr, ?int $front = null, ?int $end = null): self
@@ -63,9 +64,9 @@ class StrUtil
     /**
      * 隐藏字符串 前$front位， 后$end位
      *
-     * @param string $str
-     * @param int $front
-     * @param int $end
+     * @param  string $str
+     * @param  int    $front
+     * @param  int    $end
      * @return string
      */
     public static function hide(string $str, int $front, int $end): string
@@ -77,8 +78,8 @@ class StrUtil
     /**
      * 返回给定字符串中的长度(utf8 汉字占3字节)
      *
-     * @param string $string
-     * @param bool $byte
+     * @param  string $string
+     * @param  bool   $byte
      * @return int 字节数
      */
     public static function length(string $string, bool $byte = false): int
@@ -90,12 +91,12 @@ class StrUtil
     /**
      * 按字符|字节数来执行，返回由start和length参数指定的字符串部分
      *
-     * @param string $str
-     * @param int $start
-     * @param int|null $length
-     * @param bool $byte
+     * @param  string   $str
+     * @param  int      $start
+     * @param  int|null $length
+     * @param  bool     $byte
      * @return string
-     * @see https://www.php.net/manual/zh/function.mb-strcut.php
+     * @see    https://www.php.net/manual/zh/function.mb-strcut.php
      */
     public static function substr(string $str, int $start, ?int $length = null, bool $byte = false): string
     {
@@ -110,10 +111,10 @@ class StrUtil
      * 将字符串截断为指定字符长度的子字符串，并启用后缀
      * eg: 指定字符长度...
      *
-     * @param string $str
-     * @param int $length
-     * @param string $suffix
-     * @param string|null $encoding
+     * @param  string      $str
+     * @param  int         $length
+     * @param  string      $suffix
+     * @param  string|null $encoding
      * @return string
      */
     public static function truncate(string $str, int $length, string $suffix = '...', string $encoding = null): string
@@ -132,8 +133,8 @@ class StrUtil
     /**
      * 检查字符串中是否包含某些字符串
      *
-     * @param string $haystack
-     * @param string|array $needles
+     * @param  string       $haystack
+     * @param  string|array $needles
      * @return bool
      */
     public static function contains(string $haystack, $needles): bool
@@ -154,8 +155,8 @@ class StrUtil
     /**
      * 检查字符串是否以某些字符串结尾
      *
-     * @param string $haystack
-     * @param string|array $needles
+     * @param  string       $haystack
+     * @param  string|array $needles
      * @return bool
      */
     public static function endsWith(string $haystack, $needles): bool
@@ -176,8 +177,8 @@ class StrUtil
     /**
      * 检查字符串是否以某些字符串开头
      *
-     * @param string $haystack
-     * @param string|array $needles
+     * @param  string       $haystack
+     * @param  string|array $needles
      * @return bool
      */
     public static function startsWith(string $haystack, $needles): bool
@@ -198,9 +199,11 @@ class StrUtil
     /**
      * 获取指定长度的随机字母数字组合的字符串
      *
-     * @param int $length
-     * @param int|null $type [0: 大小写字母,1: 纯数字,2: 大写字母,3: 中文,4: 大小写字母+纯数字]
-     * @param string $addChars
+     * @param  int      $length
+     * @param  int|null $type     [0: 大小写字母,1: 纯数字,2:
+     *                            大写字母,3: 中文,4:
+     *                            大小写字母+纯数字]
+     * @param  string   $addChars
      * @return string
      * @throws \Exception
      */
@@ -208,24 +211,24 @@ class StrUtil
     {
         $str = '';
         switch ($type) {
-            case 0:
-                $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' . $addChars;
-                break;
-            case 1:
-                $chars = str_repeat('0123456789', 3);
-                break;
-            case 2:
-                $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' . $addChars;
-                break;
-            case 3:
-                $chars = 'abcdefghijklmnopqrstuvwxyz' . $addChars;
-                break;
-            case 4:
-                $chars = "们以我到他会作时要动国产的一是工就年阶义发成部民可出能方进在了不和有大这主中人上为来分生对于学下级地个用同行面说种过命度革而多子后自社加小机也经力线本电高量长党得实家定深法表着水理化争现所二起政三好十战无农使性前等反体合斗路图把结第里正新开论之物从当两些还天资事队批点育重其思与间内去因件日利相由压员气业代全组数果期导平各基或月毛然如应形想制心样干都向变关问比展那它最及外没看治提五解系林者米群头意只明四道马认次文通但条较克又公孔领军流入接席位情运器并飞原油放立题质指建区验活众很教决特此常石强极土少已根共直团统式转别造切九你取西持总料连任志观调七么山程百报更见必真保热委手改管处己将修支识病象几先老光专什六型具示复安带每东增则完风回南广劳轮科北打积车计给节做务被整联步类集号列温装即毫知轴研单色坚据速防史拉世设达尔场织历花受求传口断况采精金界品判参层止边清至万确究书" . $addChars;
-                break;
-            default:
-                $chars = 'ABCDEFGHIJKMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789' . $addChars;
-                break;
+        case 0:
+            $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' . $addChars;
+            break;
+        case 1:
+            $chars = str_repeat('0123456789', 3);
+            break;
+        case 2:
+            $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' . $addChars;
+            break;
+        case 3:
+            $chars = 'abcdefghijklmnopqrstuvwxyz' . $addChars;
+            break;
+        case 4:
+            $chars = "们以我到他会作时要动国产的一是工就年阶义发成部民可出能方进在了不和有大这主中人上为来分生对于学下级地个用同行面说种过命度革而多子后自社加小机也经力线本电高量长党得实家定深法表着水理化争现所二起政三好十战无农使性前等反体合斗路图把结第里正新开论之物从当两些还天资事队批点育重其思与间内去因件日利相由压员气业代全组数果期导平各基或月毛然如应形想制心样干都向变关问比展那它最及外没看治提五解系林者米群头意只明四道马认次文通但条较克又公孔领军流入接席位情运器并飞原油放立题质指建区验活众很教决特此常石强极土少已根共直团统式转别造切九你取西持总料连任志观调七么山程百报更见必真保热委手改管处己将修支识病象几先老光专什六型具示复安带每东增则完风回南广劳轮科北打积车计给节做务被整联步类集号列温装即毫知轴研单色坚据速防史拉世设达尔场织历花受求传口断况采精金界品判参层止边清至万确究书" . $addChars;
+            break;
+        default:
+            $chars = 'ABCDEFGHIJKMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789' . $addChars;
+            break;
         }
         if ($length > 10) {
             $chars = $type === 1 ? str_repeat($chars, $length) : str_repeat($chars, 5);
@@ -246,8 +249,8 @@ class StrUtil
     /**
      * 驼峰转下划线
      *
-     * @param string $value
-     * @param string $delimiter
+     * @param  string $value
+     * @param  string $delimiter
      * @return string
      */
     public static function snake(string $value, string $delimiter = '_'): string
@@ -264,7 +267,7 @@ class StrUtil
     /**
      * 下划线转驼峰(首字母小写)
      *
-     * @param string $underLineWord
+     * @param  string $underLineWord
      * @return string
      */
     public static function camel(string $underLineWord): string
@@ -275,7 +278,7 @@ class StrUtil
     /**
      * 下划线转驼峰(首字母大写)
      *
-     * @param string $underLineWord
+     * @param  string $underLineWord
      * @return string
      */
     public static function bigCamel(string $underLineWord): string
@@ -288,7 +291,7 @@ class StrUtil
      *  Converts 'table_name' to 'TableName'.
      * 下划线转大驼峰
      *
-     * @param string $word
+     * @param  string $word
      * @return string
      */
     public static function underlineToClassify(string $word): string
@@ -300,7 +303,7 @@ class StrUtil
      * Converts 'ModelName' to 'model_name'. it same as Doctrine of `tableize` method
      * 驼峰转下划线
      *
-     * @param string $word
+     * @param  string $word
      * @return string
      */
     public static function classifyToUnderline(string $word): string
@@ -308,10 +311,12 @@ class StrUtil
         $tabled = preg_replace('~(?<=\\w)([A-Z])~u', '_$1', $word);
 
         if ($tabled === null) {
-            throw new \RuntimeException(sprintf(
-                'preg_replace returned null for value "%s"',
-                $word
-            ));
+            throw new \RuntimeException(
+                sprintf(
+                    'preg_replace returned null for value "%s"',
+                    $word
+                )
+            );
         }
 
         return mb_strtolower($tabled);
@@ -320,7 +325,7 @@ class StrUtil
     /**
      * 转为首字母大写的标题格式(hello world! => Hello World!)
      *
-     * @param string $value
+     * @param  string $value
      * @return string
      */
     public static function title(string $value): string
@@ -331,7 +336,7 @@ class StrUtil
     /**
      * 字符串转小写
      *
-     * @param string $value
+     * @param  string $value
      * @return string
      */
     public static function lower(string $value): string
@@ -342,7 +347,7 @@ class StrUtil
     /**
      * 字符串转大写
      *
-     * @param string $value
+     * @param  string $value
      * @return string
      */
     public static function upper(string $value): string
@@ -356,8 +361,8 @@ class StrUtil
      * > Note: Base 64 padding `=` may be at the end of the returned string.
      * > `=` is not transparent to URL encoding.
      *
-     * @see https://tools.ietf.org/html/rfc4648#page-7
-     * @param string $input the string to encode.
+     * @see    https://tools.ietf.org/html/rfc4648#page-7
+     * @param  string $input the string to encode.
      * @return string encoded string.
      */
     public static function base64UrlEncode(string $input): string
@@ -368,8 +373,8 @@ class StrUtil
     /**
      * Decodes "Base 64 Encoding with URL and Filename Safe Alphabet" (RFC 4648).
      *
-     * @see https://tools.ietf.org/html/rfc4648#page-7
-     * @param string $input encoded string.
+     * @see    https://tools.ietf.org/html/rfc4648#page-7
+     * @param  string $input encoded string.
      * @return string decoded string.
      */
     public static function base64UrlDecode(string $input): string
@@ -379,7 +384,8 @@ class StrUtil
 
     /**
      * Counts words in a string.
-     * @param string $string
+     *
+     * @param  string $string
      * @return int
      */
     public static function countWords(string $string): int
@@ -390,7 +396,7 @@ class StrUtil
     /**
      * 转换一个String字符串为byte数组
      *
-     * @param string $string
+     * @param  string $string
      * @return array
      */
     public static function getBytes(string $string): array
@@ -405,7 +411,7 @@ class StrUtil
     /**
      * 将字节数组转化为String类型的数据
      *
-     * @param array $bytes
+     * @param  array $bytes
      * @return string
      */
     public static function byteToStr(array $bytes): string

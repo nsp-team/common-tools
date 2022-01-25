@@ -5,15 +5,16 @@ namespace NspTeam\Component\Tools\Utils;
 
 /**
  * DesensitizedUtil
+ *
  * @package NspTeam\Component\Tools\Utils
- * @since 0.0.1
+ * @since   0.0.1
  */
 class DesensitizedUtil
 {
     /**
      * 【手机号码】前三位，后4位，其他隐藏，比如135****2210
      *
-     * @param string $mobile
+     * @param  string $mobile
      * @return string
      */
     public static function mobilePhone(string $mobile): string
@@ -24,9 +25,9 @@ class DesensitizedUtil
     /**
      * 【身份证号】前1位 和后2位
      *
-     * @param string $idCardNum
-     * @param int $front 保留：前面的front位数；从1开始
-     * @param int $end 保留：后面的end位数；从1开始
+     * @param  string $idCardNum
+     * @param  int    $front     保留：前面的front位数；从1开始
+     * @param  int    $end       保留：后面的end位数；从1开始
      * @return string 脱敏后的身份证
      */
     public static function idCardNum(string $idCardNum, int $front, int $end): string
@@ -50,7 +51,7 @@ class DesensitizedUtil
     /**
      * 【密码】密码的全部字符都用*代替，比如：******
      *
-     * @param string $password
+     * @param  string $password
      * @return string
      */
     public static function password(string $password): string
@@ -65,7 +66,7 @@ class DesensitizedUtil
      * 银行卡号脱敏
      * eg: 1101 **** **** **** 3256
      *
-     * @param string $bankCardNo 银行卡号
+     * @param  string $bankCardNo 银行卡号
      * @return string 脱敏之后的银行卡号
      */
     public static function bankCard(string $bankCardNo): string
@@ -90,7 +91,7 @@ class DesensitizedUtil
             $str->append('*');
         }
         $str->append(StrUtil::SPACE);
-        $str->append($bankCardNo, $length-4 ,$length);
+        $str->append($bankCardNo, $length-4, $length);
 
         return  $str->toString();
     }

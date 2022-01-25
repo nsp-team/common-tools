@@ -9,6 +9,7 @@ use NspTeam\Component\Tools\Wx\MiniProgram\Request\Ocr;
 
 /**
  * MinProgram
+ *
  * @package NspTeam\Component\Tools\Wx\MiniProgram
  *
  * @method Ocr ocr()
@@ -24,6 +25,7 @@ class MiniProgram
     protected $accessToken = null;
     /**
      * default 7200 second
+     *
      * @var int
      */
     protected $expires = 7200;
@@ -38,7 +40,7 @@ class MiniProgram
     }
 
     /**
-     * @param string|null $appID
+     * @param  string|null $appID
      * @return MiniProgram
      */
     public function setAppID(?string $appID): self
@@ -48,7 +50,7 @@ class MiniProgram
     }
 
     /**
-     * @param string|null $appSecret
+     * @param  string|null $appSecret
      * @return MiniProgram
      */
     public function setAppSecret(?string $appSecret): self
@@ -74,9 +76,9 @@ class MiniProgram
     /**
      * 解密账号个人信息
      *
-     * @param string $sessionKey 会话密钥
-     * @param string $encryptedData
-     * @param string $iv
+     * @param  string $sessionKey    会话密钥
+     * @param  string $encryptedData
+     * @param  string $iv
      * @return array
      * @throws Exception
      */
@@ -114,7 +116,7 @@ class MiniProgram
         // 算法为 AES-128-CBC，数据采用PKCS#7填充
         $result = openssl_decrypt($aesCipher, "AES-128-CBC", $aesKey, OPENSSL_RAW_DATA, $aesIV);
         $data = json_decode($result, true, 512, JSON_THROW_ON_ERROR);
-        if ($data === NULL) {
+        if ($data === null) {
             throw new \RuntimeException('aes 解密失败');
         }
         if ($data['watermark']['appid'] !== $this->appID) {
@@ -127,7 +129,7 @@ class MiniProgram
     /**
      * 登录凭证校验
      *
-     * @param string $code 临时登录凭证
+     * @param  string $code 临时登录凭证
      * @return array
      * @throws Exception
      */
@@ -176,8 +178,8 @@ class MiniProgram
     }
 
     /**
-     * @param string $method
-     * @param mixed $params method of params
+     * @param  string $method
+     * @param  mixed  $params method of params
      * @return mixed
      * @throws Exception
      */

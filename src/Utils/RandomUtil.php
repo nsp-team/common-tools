@@ -5,6 +5,7 @@ namespace NspTeam\Component\Tools\Utils;
 
 /**
  * RandomUtil
+ *
  * @package NspTeam\Component\Tools\Utils
  */
 class RandomUtil
@@ -23,8 +24,8 @@ class RandomUtil
     /**
      * 随机浮点数
      *
-     * @param int $min
-     * @param int $max
+     * @param  int $min
+     * @param  int $max
      * @return float
      */
     public static function randomFloat(int $min = 0, int $max = 1): float

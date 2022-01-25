@@ -5,6 +5,7 @@ namespace NspTeam\Component\Tools\Utils;
 
 /**
  * FileUtil
+ *
  * @package NspTeam\Component\Tools\Utils
  */
 class FileUtil
@@ -12,10 +13,10 @@ class FileUtil
     /**
      * 返回父目录的路径，similar to `dirname()`
      *
-     * @param string $path
-     * @param int $levels
+     * @param  string $path
+     * @param  int    $levels
      * @return string
-     * @see https://secure.php.net/manual/en/function.dirname.php
+     * @see    https://secure.php.net/manual/en/function.dirname.php
      */
     public static function dirname(string $path, int $levels = 1): string
     {
@@ -35,7 +36,7 @@ class FileUtil
     /**
      * 获取文件路径的数组信息
      *
-     * @param string $path
+     * @param  string $path
      * @return array
      */
     public static function getAttribute(string $path): array
@@ -47,7 +48,7 @@ class FileUtil
     /**
      * 获取文件名(包含后缀)
      *
-     * @param string $filename
+     * @param  string $filename
      * @return string
      */
     public static function getFilenameWithExtension(string $filename): string
@@ -59,7 +60,7 @@ class FileUtil
     /**
      * 获取文件名(不包含后缀)
      *
-     * @param string $filename
+     * @param  string $filename
      * @return string
      */
     public static function getFilenameNoExtension(string $filename): string
@@ -71,7 +72,7 @@ class FileUtil
     /**
      * 获取文件后缀
      *
-     * @param string $filename
+     * @param  string $filename
      * @return string
      */
     public static function getExtension(string $filename): string
@@ -101,8 +102,8 @@ class FileUtil
     /**
      * 自定义写入日志
      *
-     * @param string $content 日志内容
-     * @param string|null $dir 写入地址(绝对地址)
+     * @param string      $content     日志内容
+     * @param string|null $dir         写入地址(绝对地址)
      * @param string|null $logFileName 文件名
      */
     public static function writeLog(string $content, ?string $dir = null, ?string $logFileName = null): void

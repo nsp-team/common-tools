@@ -5,6 +5,7 @@ namespace NspTeam\Component\Tools\Utils;
 
 /**
  * Class CurlUtil
+ *
  * @package Maoxp\Tool\core\curlUtil
  */
 class CurlUtil
@@ -14,10 +15,10 @@ class CurlUtil
     /**
      * get 请求
      *
-     * @param string $url 地址
-     * @param array|null $params 请求参数
-     * @param array $headerArray ['Content-Type: application/json']
-     * @param int $retry 重试次数
+     * @param  string     $url         地址
+     * @param  array|null $params      请求参数
+     * @param  array      $headerArray ['Content-Type: application/json']
+     * @param  int        $retry       重试次数
      * @return bool|string
      */
     public static function get(string $url, ?array $params, array $headerArray, int $retry = 1)
@@ -36,7 +37,8 @@ class CurlUtil
         }
 
         $curl = curl_init();
-        curl_setopt_array($curl, array(
+        curl_setopt_array(
+            $curl, array(
             CURLOPT_URL => $url,
             CURLOPT_USERAGENT => $agent,
             CURLOPT_RETURNTRANSFER => true,
@@ -50,7 +52,8 @@ class CurlUtil
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_HTTPGET => true,
             CURLOPT_CUSTOMREQUEST => 'GET',
-        ));
+            )
+        );
         if (!empty($header)) {
             curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
         }
@@ -68,10 +71,10 @@ class CurlUtil
     /**
      * post 请求
      *
-     * @param string $url 地址
-     * @param array|null $body 请求体
-     * @param array $headerArray ['Content-Type: application/json']
-     * @param int $retry 重试次数
+     * @param  string     $url         地址
+     * @param  array|null $body        请求体
+     * @param  array      $headerArray ['Content-Type: application/json']
+     * @param  int        $retry       重试次数
      * @return bool|string
      * @throws \JsonException
      */
@@ -99,7 +102,8 @@ class CurlUtil
         $agent = 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.172 Safari/537.22';
 
         $curl = curl_init();
-        curl_setopt_array($curl, array(
+        curl_setopt_array(
+            $curl, array(
             CURLOPT_URL => $url,
             CURLOPT_USERAGENT => $agent,
             CURLOPT_RETURNTRANSFER => true,
@@ -114,9 +118,10 @@ class CurlUtil
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => $postFields,
             CURLOPT_CUSTOMREQUEST => 'POST',
-        ));
+            )
+        );
         if (!empty($header)) {
-            curl_setopt($curl, CURLINFO_HEADER_OUT, TRUE);    //追踪句柄的请求字符串
+            curl_setopt($curl, CURLINFO_HEADER_OUT, true);    //追踪句柄的请求字符串
             curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
         }
         self::$responseBody = curl_exec($curl);
