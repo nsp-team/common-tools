@@ -98,10 +98,10 @@ class ArrayUtil
     /**
      * 驼峰转下划线
      *
-     * @param  array|object|mixed $arr
+     * @param array|object|mixed $arr
      * @return array|null
      */
-    public static function classifyToUnderline($arr, $bigOrSmall=false): ?array
+    public static function classifyToUnderline($arr): ?array
     {
         if (empty($arr)) {
             return null;

@@ -300,7 +300,7 @@ class StrUtil
     }
 
     /**
-     * Converts 'ModelName' to 'model_name'. it same as Doctrine of `tableize` method
+     * Converts 'ModelName' to 'model_name'.
      * 驼峰转下划线
      *
      * @param  string $word
